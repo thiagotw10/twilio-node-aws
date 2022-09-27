@@ -64,6 +64,14 @@ Route.post('/panel/client/:client_id/menus/:menu_id/submenus/store', async (ctx)
   return new SubMenusController().store(ctx)
 });
 
+Route.post('/api/tasks', async (ctx) => {
+  const { default: UmovMeController } = await import(
+    'App/Controllers/Http/UmovMeController'
+  )
+
+  return new UmovMeController().receiveStatusFromTask(ctx)
+});
+
 Route.get('/panel/client/:id', async ({ params }) => {
   const { default: IndexController } = await import(
     'App/Controllers/Http/panel/IndexController'

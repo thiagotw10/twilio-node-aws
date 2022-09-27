@@ -89,6 +89,8 @@ export default class Client extends BaseModel {
   @column()
   public survey_no_finished_group: string
 
+  @column()
+  public global_expiration_time: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

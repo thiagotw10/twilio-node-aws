@@ -42,6 +42,9 @@ export default class Survey extends BaseModel {
   @column()
   public request_outs_id: number
 
+  @column()
+  public finished_task: boolean
+
   @belongsTo(() => RequestOutsModel, {
     foreignKey: "request_outs_id"
   })

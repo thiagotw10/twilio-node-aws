@@ -20,42 +20,30 @@ export default class AppProvider {
   public async ready () {
     // App is ready
 
-    // #region cron build xml single request
-    const XmlContr = (await import('App/Controllers/Http/XmlsController')).default
-      cron.schedule("*/10 * * * * *", async () => { //*/10 * * * * *
-        //console.log(`[${Moment().format('H:mm')}] - Search requests for integration...`)
-        // await new XmlContr().BuildXmlSingleRequest()
-        // await new XmlContr().BuildXmlSingleRequestItens()
-      });
-    // #endregion cron build xml single request
+    // const XmlContr = (await import('App/Controllers/Http/XmlsController')).default
+    // cron.schedule("*/10 * * * * *", async () => {
+    //   await new XmlContr().BuildXmlSingleRequest()
+    //   await new XmlContr().BuildXmlSingleRequestItens()
+    // });
 
-    // #region cron send xml single request and build single request itens
-      cron.schedule("*/3 * * * * *", async () => {
-        // await new XmlContr().send()
-      });
-    // #endregion cron send xml single request and build single request itens
+    // cron.schedule("*/3 * * * * *", async () => {
+    //   await new XmlContr().send()
+    // });
 
-    // #region cron send survey
-    const SurveyController = (await import('App/Controllers/Http/SurveyController')).default
-    cron.schedule("*/1 * * * *", async () => {
-      // console.log(`[${Moment().format('H:mm')}] - Init survey contact...`)
-      // await new SurveyController().index()
-    });
-  // #endregion cron send survey
+    // const SurveyController = (await import('App/Controllers/Http/SurveyController')).default
+    // cron.schedule("*/1 * * * *", async () => {
+    //   await new SurveyController().index()
+    // });
 
-    // #region cron survey expired
-      cron.schedule("*/30 * * * * *", async () => {
-        // console.log(`[${Moment().format('H:mm')}] - Init survey expires...`)
-        // await new SurveyController().expiration()
-      });
-    // #endregion cron send survey
+    // cron.schedule("*/30 * * * * *", async () => {
+    //   await new SurveyController().expiration()
+    // });
 
-    const CheckExpirationController = (await import('App/Controllers/Http/CheckExpirationController')).default
-    cron.schedule("*/30 * * * * *", async () => {
-      console.log(`[${day().format('DD-MM-YYYY HH:mm')}] - Init Check Expiration...`)
-      await new CheckExpirationController().index()
-    });
-
+    // const CheckExpirationController = (await import('App/Controllers/Http/CheckExpirationController')).default
+    // cron.schedule("*/30 * * * * *", async () => {
+    //   console.log(`[${day().format('DD-MM-YYYY HH:mm')}] - Init Check Expiration...`)
+    //   await new CheckExpirationController().index()
+    // });
 
   }
 

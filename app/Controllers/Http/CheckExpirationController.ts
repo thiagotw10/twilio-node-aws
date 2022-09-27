@@ -20,13 +20,16 @@ export default class CheckExpirationController {
 
     for (let iMovement = 0; iMovement < movementData.length; iMovement++) {
 
-      const expirationTime = 10
+      const expirationTime = +movementData[iMovement].client.global_expiration_time
       const movementDate = dayjs(movementData[iMovement].createdAt.toString())
       const nowDateWithAddMinutes = dayjs()
       const diffDates = nowDateWithAddMinutes.diff(movementDate) / 60000
+
       if (diffDates > expirationTime){ // init expiration process
+
         movementData[iMovement].active = false
         await movementData[iMovement].save()
+
         await new TwilioResponse().create({
           accountSid: movementData[iMovement].client.account_sid,
           authToken: movementData[iMovement].client.auth_token,
